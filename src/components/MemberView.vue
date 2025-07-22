@@ -197,6 +197,12 @@ export default {
         link: 'https://github.com/ZeroWolf233/'
       },
       {
+        name: '阳帆',
+        avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3356136957&spec=4',
+        role: '创新建设者',
+        link: 'https://github.com/WolfYangFan'
+      },
+      {
         name: '小涵',
         avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2104687126&spec=4',
         role: '开发工程师',

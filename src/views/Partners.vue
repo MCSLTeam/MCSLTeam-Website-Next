@@ -22,7 +22,7 @@
                 <BusinessIcon />
               </n-icon>
             </template>
-            
+
             <div class="partners-grid">
               <div class="partner-card" v-for="partner in strategicPartners" :key="partner.id">
                 <div class="partner-logo">
@@ -31,17 +31,13 @@
                 </div>
                 <div class="partner-info">
                   <h3>{{ partner.name }}</h3>
-                  <p class="partner-description">{{ partner.description }}</p>
-                  <div class="partner-tags">
-                    <n-tag v-for="tag in partner.tags" :key="tag" type="info" size="small">
-                      {{ tag }}
-                    </n-tag>
-                  </div>
                 </div>
                 <div class="partner-actions" v-if="partner.website">
                   <n-button text type="primary" @click="openLink(partner.website)">
                     <template #icon>
-                      <n-icon><LinkIcon /></n-icon>
+                      <n-icon>
+                        <LinkIcon />
+                      </n-icon>
                     </template>
                     访问官网
                   </n-button>
@@ -50,13 +46,13 @@
             </div>
           </n-card>
 
-          <n-card title="技术合作伙伴" class="section-card" :bordered="false">
+          <n-card v-if="techPartners.length > 0" title="技术合作伙伴" class="section-card" :bordered="false">
             <template #header-extra>
               <n-icon size="20" color="#19e3a2">
                 <CodeIcon />
               </n-icon>
             </template>
-            
+
             <div class="partners-grid">
               <div class="partner-card" v-for="partner in techPartners" :key="partner.id">
                 <div class="partner-logo">
@@ -65,17 +61,13 @@
                 </div>
                 <div class="partner-info">
                   <h3>{{ partner.name }}</h3>
-                  <p class="partner-description">{{ partner.description }}</p>
-                  <div class="partner-tags">
-                    <n-tag v-for="tag in partner.tags" :key="tag" type="success" size="small">
-                      {{ tag }}
-                    </n-tag>
-                  </div>
                 </div>
                 <div class="partner-actions" v-if="partner.website">
                   <n-button text type="primary" @click="openLink(partner.website)">
                     <template #icon>
-                      <n-icon><LinkIcon /></n-icon>
+                      <n-icon>
+                        <LinkIcon />
+                      </n-icon>
                     </template>
                     访问官网
                   </n-button>
@@ -90,7 +82,7 @@
                 <PeopleIcon />
               </n-icon>
             </template>
-            
+
             <div class="partners-grid">
               <div class="partner-card" v-for="partner in communityPartners" :key="partner.id">
                 <div class="partner-logo">
@@ -99,17 +91,13 @@
                 </div>
                 <div class="partner-info">
                   <h3>{{ partner.name }}</h3>
-                  <p class="partner-description">{{ partner.description }}</p>
-                  <div class="partner-tags">
-                    <n-tag v-for="tag in partner.tags" :key="tag" type="warning" size="small">
-                      {{ tag }}
-                    </n-tag>
-                  </div>
                 </div>
                 <div class="partner-actions" v-if="partner.website">
                   <n-button text type="primary" @click="openLink(partner.website)">
                     <template #icon>
-                      <n-icon><LinkIcon /></n-icon>
+                      <n-icon>
+                        <LinkIcon />
+                      </n-icon>
                     </template>
                     访问官网
                   </n-button>
@@ -124,48 +112,17 @@
                 <HandshakeIcon />
               </n-icon>
             </template>
-            
+
             <div class="partnership-info">
               <div class="partnership-content">
-                <h3>加入我们的合作伙伴计划</h3>
-                <p>我们欢迎志同道合的组织和个人与我们建立合作关系，共同推动Minecraft服务器生态的发展。</p>
-                
-                <div class="partnership-benefits">
-                  <div class="benefit-item">
-                    <n-icon size="24" color="#19e3a2">
-                      <CheckmarkIcon />
-                    </n-icon>
-                    <div>
-                      <h4>技术支持</h4>
-                      <p>获得我们专业团队的技术支持和咨询服务</p>
-                    </div>
-                  </div>
-                  
-                  <div class="benefit-item">
-                    <n-icon size="24" color="#19e3a2">
-                      <CheckmarkIcon />
-                    </n-icon>
-                    <div>
-                      <h4>品牌推广</h4>
-                      <p>在我们的官方渠道获得品牌曝光和推广机会</p>
-                    </div>
-                  </div>
-                  
-                  <div class="benefit-item">
-                    <n-icon size="24" color="#19e3a2">
-                      <CheckmarkIcon />
-                    </n-icon>
-                    <div>
-                      <h4>资源共享</h4>
-                      <p>共享技术资源、用户资源和市场资源</p>
-                    </div>
-                  </div>
-                </div>
-                
+                <p>我们欢迎志同道合的组织和个人与我们建立合作关系，共同推动 Minecraft 服务器生态的发展。</p>
+
                 <div class="partnership-contact">
-                  <n-button type="primary" size="large" @click="openLink('mailto:partnership@mcsl.com.cn')">
+                  <n-button type="primary" size="large" @click="openLink('mailto:services@mcsl.com.cn')">
                     <template #icon>
-                      <n-icon><MailIcon /></n-icon>
+                      <n-icon>
+                        <MailIcon />
+                      </n-icon>
                     </template>
                     联系我们
                   </n-button>
@@ -180,14 +137,13 @@
 </template>
 
 <script>
-import { 
-  NLayout, 
-  NLayoutContent, 
-  NCard, 
-  NButton, 
-  NIcon, 
-  NGradientText,
-  NTag
+import {
+  NLayout,
+  NLayoutContent,
+  NCard,
+  NButton,
+  NIcon,
+  NGradientText
 } from 'naive-ui'
 import {
   Business as BusinessIcon,
@@ -208,7 +164,6 @@ export default {
     NButton,
     NIcon,
     NGradientText,
-    NTag,
     BusinessIcon,
     CodeIcon,
     PeopleIcon,
@@ -222,49 +177,45 @@ export default {
       {
         id: 1,
         name: '阜阳市波比网络科技有限公司',
-        description: 'MCSL开发组的母公司，提供全方位的技术支持和商业运营支持',
-        logo: '/logos/bobi-tech.png',
-        website: 'https://bobi.tech',
-        tags: ['母公司', '技术支持', '商业运营']
-      }
-    ]
-
-    const techPartners = [
-      {
-        id: 1,
-        name: 'GitHub',
-        description: '全球领先的代码托管平台，为我们提供开源项目托管服务',
-        logo: '/logos/github.png',
-        website: 'https://github.com',
-        tags: ['代码托管', '开源', '协作开发']
-      },
-      {
-        id: 2,
-        name: 'Naive UI',
-        description: '现代化的Vue 3组件库，为我们的前端开发提供强大支持',
-        logo: '/logos/naive-ui.png',
-        website: 'https://naiveui.com',
-        tags: ['UI组件', 'Vue 3', '前端开发']
+        logo: 'https://img.fastmirror.net/s/2025/07/22/687f88c27f39b.jpg',
+        website: 'http://www.blbilink.com'
       }
     ]
 
     const communityPartners = [
       {
         id: 1,
-        name: 'Minecraft中文论坛',
-        description: '国内最大的Minecraft社区，与我们在内容和用户方面深度合作',
-        logo: '/logos/mcbbs.png',
-        website: 'https://www.mcbbs.net',
-        tags: ['社区', '用户交流', '内容合作']
+        name: 'MSL 开发组',
+        logo: 'https://mslmc.cn/logo.png',
+        website: 'https://www.mslmc.cn/'
       },
       {
         id: 2,
-        name: 'MineBBS',
-        description: '新兴的Minecraft技术社区，专注于服务器技术交流',
-        logo: '/logos/minebbs.png',
-        website: 'https://minebbs.com',
-        tags: ['技术社区', '服务器', '开发者']
-      }
+        name: '内网穿透联盟 CFU',
+        logo: 'https://img.fastmirror.net/s/2025/07/22/687f8d53e18f5.png',
+        website: 'https://www.xn--v6qw21h0gd43u.xn--fiqs8s/'
+      },
+    ]
+
+    const techPartners = [
+      {
+        id: 1,
+        name: '幻缘网络 MagicEdge Network',
+        logo: 'https://img.fastmirror.net/s/2025/07/14/68740bbd67d18.png',
+        website: 'https://www.menetx.com/'
+      },
+      {
+        id: 2,
+        name: '乐青团队 LoCyan',
+        logo: 'https://www.locyan.cn/upload/favicon.ico',
+        website: 'https://www.locyan.cn/'
+      },
+      {
+        id: 3,
+        name: '裕米云',
+        logo: 'https://img.fastmirror.net/s/2025/07/22/687f8c75dbb2a.png',
+        website: 'https://comcorn.cn/'
+      },
     ]
 
     const openLink = (url) => {
@@ -368,6 +319,10 @@ export default {
   border-radius: 12px;
   padding: 24px;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
 }
 
 .partner-card:hover {
@@ -408,26 +363,13 @@ export default {
 .partner-info {
   text-align: center;
   margin-bottom: 16px;
+  flex: 1;
 }
 
 .partner-info h3 {
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin: 0;
   color: var(--n-text-color);
-}
-
-.partner-description {
-  color: var(--n-text-color-2);
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.partner-tags {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
 }
 
 .partner-actions {
@@ -438,40 +380,10 @@ export default {
   margin-top: 24px;
 }
 
-.partnership-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  color: var(--n-text-color);
-}
-
-.partnership-content > p {
+.partnership-content>p {
   color: var(--n-text-color-2);
   line-height: 1.6;
   margin-bottom: 32px;
-}
-
-.partnership-benefits {
-  display: grid;
-  gap: 24px;
-  margin-bottom: 32px;
-}
-
-.benefit-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.benefit-item h4 {
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  color: var(--n-text-color);
-}
-
-.benefit-item p {
-  color: var(--n-text-color-2);
-  line-height: 1.6;
-  margin: 0;
 }
 
 .partnership-contact {
@@ -482,29 +394,29 @@ export default {
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.1rem;
   }
-  
+
   .content-container {
     padding: 32px 16px;
   }
-  
+
   .partners-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .partner-card {
     padding: 20px;
   }
-  
+
   .partner-logo {
     width: 60px;
     height: 60px;
   }
-  
+
   .partner-fallback {
     font-size: 18px;
   }

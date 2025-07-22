@@ -56,6 +56,8 @@ export default {
         activeKey.value = 'home'
       } else if (route.path === '/products') {
         activeKey.value = 'products'
+      } else if (route.path === '/partners') {
+        activeKey.value = 'partners'
       } else if (route.path === '/about') {
         activeKey.value = 'about'
       }

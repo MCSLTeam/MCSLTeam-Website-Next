@@ -53,6 +53,7 @@ import {
   Home as HomeIcon,
   Apps as ProductsIcon,
   InformationCircle as AboutIcon,
+  People as PartnersIcon,
   Menu as MenuIcon
 } from '@vicons/ionicons5'
 
@@ -68,6 +69,7 @@ export default {
     HomeIcon,
     ProductsIcon,
     AboutIcon,
+    PartnersIcon,
     MenuIcon
   },
   props: {
@@ -125,6 +127,11 @@ export default {
         icon: () => h(NIcon, null, { default: () => h(ProductsIcon) })
       },
       {
+        label: '合作伙伴',
+        key: 'partners',
+        icon: () => h(NIcon, null, { default: () => h(PartnersIcon) })
+      },
+      {
         label: '关于',
         key: 'about',
         icon: () => h(NIcon, null, { default: () => h(AboutIcon) })
@@ -137,6 +144,8 @@ export default {
         router.push('/')
       } else if (key === 'products') {
         router.push('/products')
+      } else if (key === 'partners') {
+        router.push('/partners')
       } else if (key === 'about') {
         router.push('/about')
       }
