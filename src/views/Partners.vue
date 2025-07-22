@@ -115,7 +115,7 @@
 
             <div class="partnership-info">
               <div class="partnership-content">
-                <p>我们欢迎志同道合的组织和个人与我们建立合作关系，共同推动 Minecraft 服务器生态的发展。</p>
+                <p>我们欢迎志同道合的组织和个人与我们建立合作关系，共同推动Minecraft服务器生态的发展。</p>
 
                 <div class="partnership-contact">
                   <n-button type="primary" size="large" @click="openLink('mailto:services@mcsl.com.cn')">
