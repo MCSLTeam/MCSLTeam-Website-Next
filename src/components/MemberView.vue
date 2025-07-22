@@ -1,6 +1,18 @@
 <template>
   <div class="content-container">
-    <n-card title="团队成员" class="section-card" :bordered="false">
+    <n-card class="section-card" :bordered="false">
+      <template #header>
+        <div class="section-header">
+          <h2 class="section-title">
+            <n-gradient-text gradient="linear-gradient(135deg, #19e3a2 0%, #16d195 100%)">
+              团队成员
+            </n-gradient-text>
+          </h2>
+          <p class="section-subtitle">
+            志同道合的伙伴，携手共创美好未来
+          </p>
+        </div>
+      </template>
       <template #header-extra>
         <n-icon size="20" color="#18a058">
           <PeopleIcon />
@@ -72,10 +84,10 @@ import {
   NButton,
   NGrid,
   NGridItem,
-  NIcon
+  NIcon,
+  NGradientText
 } from 'naive-ui'
 import {
-  People as PeopleIcon,
   LogoGithub as GithubIcon
 } from '@vicons/ionicons5'
 
@@ -87,7 +99,7 @@ export default {
     NGrid,
     NGridItem,
     NIcon,
-    PeopleIcon,
+    NGradientText,
     GithubIcon
   },
   setup() {
@@ -309,6 +321,26 @@ export default {
   background: var(--n-body-color);
 }
 
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--n-text-color-2);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 .section-card {
   background: var(--n-card-color);
   border-radius: 16px;
@@ -447,6 +479,18 @@ export default {
 @media (max-width: 599px) {
   .content-container {
     padding: 16px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
   }
 
   .member-header {
