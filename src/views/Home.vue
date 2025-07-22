@@ -54,6 +54,58 @@
           </div>
         </div>
 
+        <!-- 产品展示板块 -->
+        <div class="products-section">
+          <div class="products-container">
+            <div class="products-header">
+              <h2 class="products-title">
+                <n-gradient-text gradient="linear-gradient(135deg, #19e3a2 0%, #16d195 100%)">
+                  妙手生花，创意无限
+                </n-gradient-text>
+              </h2>
+              <p class="products-subtitle">
+                我们勇于创新，不断追求卓越，各种创意设计与新颖想法是我们执手的利刃。
+              </p>
+            </div>
+
+            <div class="products-grid">
+              <div
+                v-for="product in products"
+                :key="product.id"
+                class="product-card"
+                @click="openProduct(product.link)"
+              >
+                <div class="product-icon">
+                  <img :src="product.icon" :alt="product.name" />
+                </div>
+                <div class="product-info">
+                  <h3 class="product-name">{{ product.name }}</h3>
+                  <p class="product-desc">{{ product.description }}</p>
+                </div>
+                <div class="product-arrow">
+                  <n-icon size="20">
+                    <ArrowForwardIcon />
+                  </n-icon>
+                </div>
+              </div>
+            </div>
+
+            <div class="products-footer">
+              <n-button
+                type="primary"
+                size="large"
+                @click="viewAllProducts"
+                class="view-all-button"
+              >
+                <template #icon>
+                  <n-icon><AppsIcon /></n-icon>
+                </template>
+                查看所有产品
+              </n-button>
+            </div>
+          </div>
+        </div>
+
         <MemberView />
       </n-layout-content>
     </n-layout>
@@ -72,7 +124,9 @@ import {
   NCarousel
 } from 'naive-ui'
 import {
-  People as PeopleIcon
+  People as PeopleIcon,
+  ArrowForward as ArrowForwardIcon,
+  Apps as AppsIcon
 } from '@vicons/ionicons5'
 
 export default {
@@ -85,7 +139,9 @@ export default {
     NGradientText,
     NCarousel,
     MemberView,
-    PeopleIcon
+    PeopleIcon,
+    ArrowForwardIcon,
+    AppsIcon
   },
   setup() {
     const isMobile = ref(false)
@@ -110,6 +166,31 @@ export default {
 
     const currentSubtitleIndex = ref(0)
     let subtitleTimer = null
+
+    // 产品数据
+    const products = ref([
+      {
+        id: 1,
+        name: 'MCServerLauncher 2',
+        description: '简洁全能的 Minecraft 开服器',
+        icon: 'https://images.mcsl.com.cn/new/MCSL2.webp',
+        link: 'https://v2.mcsl.com.cn/'
+      },
+      {
+        id: 2,
+        name: 'MCServerLauncher Future',
+        description: '全新设计的下一代开服器',
+        icon: 'https://images.mcsl.com.cn/new/MCServerLauncherFuture.webp',
+        link: 'https://future.mcsl.com.cn/'
+      },
+      {
+        id: 3,
+        name: 'MCSL-Sync',
+        description: '全面的服务器核心镜像站',
+        icon: 'https://images.mcsl.com.cn/new/MCSL-Sync.webp',
+        link: 'https://sync.mcsl.com.cn/'
+      }
+    ])
 
 
 
@@ -144,6 +225,23 @@ export default {
       }
     }
 
+    // 产品相关方法
+    const openProduct = (url) => {
+      try {
+        window.open(url, '_blank', 'noopener,noreferrer')
+      } catch (error) {
+        console.error('Failed to open product:', error)
+        const newWindow = window.open()
+        if (newWindow) {
+          newWindow.location.href = url
+        }
+      }
+    }
+
+    const viewAllProducts = () => {
+      router.push('/products')
+    }
+
     onMounted(() => {
       checkScreenSize()
       window.addEventListener('resize', checkScreenSize)
@@ -160,7 +258,10 @@ export default {
       backgroundImages,
       subtitles,
       currentSubtitleIndex,
-      scrollToMembers
+      scrollToMembers,
+      products,
+      openProduct,
+      viewAllProducts
     }
   }
 }
@@ -609,6 +710,190 @@ export default {
 
   .member-role {
     font-size: 12px;
+  }
+}
+
+/* 产品展示板块 */
+.products-section {
+  padding: 80px 0;
+  background: var(--n-body-color);
+}
+
+.products-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.products-title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.products-subtitle {
+  font-size: 1.2rem;
+  color: var(--n-text-color-2);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.product-card {
+  background: var(--n-card-color);
+  border: 1px solid var(--n-border-color);
+  border-radius: 16px;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(25, 227, 162, 0.2);
+  border-color: #19e3a2;
+}
+
+/* 深色主题优化 */
+[data-theme="dark"] .product-card {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .product-card:hover {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(25, 227, 162, 0.3);
+}
+
+.product-card:hover .product-arrow {
+  transform: translateX(4px);
+  color: #19e3a2;
+}
+
+.product-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--n-border-color);
+}
+
+.product-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.product-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--n-text-color);
+}
+
+.product-desc {
+  font-size: 0.95rem;
+  color: var(--n-text-color-2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.product-arrow {
+  color: var(--n-text-color-3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.products-footer {
+  text-align: center;
+}
+
+.view-all-button {
+  min-width: 200px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* 产品板块移动端优化 */
+@media (max-width: 768px) {
+  .products-section {
+    padding: 60px 0;
+  }
+
+  .products-container {
+    padding: 0 16px;
+  }
+
+  .products-header {
+    margin-bottom: 48px;
+  }
+
+  .products-title {
+    font-size: 2.2rem;
+  }
+
+  .products-subtitle {
+    font-size: 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .product-card {
+    padding: 24px 20px;
+    gap: 16px;
+  }
+
+  .product-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .product-name {
+    font-size: 1.1rem;
+  }
+
+  .product-desc {
+    font-size: 0.9rem;
   }
 }
 </style>
