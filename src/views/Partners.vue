@@ -186,11 +186,17 @@ export default {
       {
         id: 1,
         name: 'MSL 开发组',
-        logo: 'https://mslmc.cn/logo.png',
+        logo: 'https://www.mslmc.cn/logo.png',
         website: 'https://www.mslmc.cn/'
       },
       {
         id: 2,
+        name: 'iNKORE Studios',
+        logo: 'https://img.fastmirror.net/s/2025/09/17/68c989c36c29d.png',
+        website: 'https://www.inkore.net/?locale=zh-cn'
+      },
+      {
+        id: 3,
         name: '内网穿透联盟 CFU',
         logo: 'https://img.fastmirror.net/s/2025/07/22/687f8d53e18f5.png',
         website: 'https://www.xn--v6qw21h0gd43u.xn--fiqs8s/'
@@ -200,21 +206,27 @@ export default {
     const techPartners = [
       {
         id: 1,
-        name: '幻缘网络 MagicEdge Network',
+        name: '天津河东幻缘网络科技有限公司',
         logo: 'https://img.fastmirror.net/s/2025/07/14/68740bbd67d18.png',
         website: 'https://www.menetx.com/'
       },
       {
         id: 2,
-        name: '乐青团队 LoCyan',
+        name: '杭州樱芸网络科技有限公司',
         logo: 'https://www.locyan.cn/upload/favicon.ico',
         website: 'https://www.locyan.cn/'
       },
       {
         id: 3,
-        name: '裕米云',
+        name: '湖南裕米云数据科技有限公司',
         logo: 'https://img.fastmirror.net/s/2025/07/22/687f8c75dbb2a.png',
         website: 'https://comcorn.cn/'
+      },
+      {
+        id: 4,
+        name: '江门市十叠科技有限公司',
+        logo: 'https://img.fastmirror.net/s/2025/09/16/68c9893d5639d.png',
+        website: 'https://cladonia.team/'
       },
     ]
 

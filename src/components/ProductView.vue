@@ -62,10 +62,10 @@ export default {
   setup() {
     const products = ref([
       {
-        name: 'MCServerLauncher 2',
+        name: 'MCServerLauncher 2 开服器',
         link: 'https://v2.mcsl.com.cn/',
         icon: 'https://images.mcsl.com.cn/new/MCSL2.webp',
-        description: '一个简洁、全能的 Minecraft 开服器，MCSL开发组用 Python 倾心打造 2 年之作',
+        description: '一个简洁、全能的 Minecraft 开服工具，MCSL开发组用 Python 倾心打造 2 年之作',
         image: 'https://images.mcsl.com.cn/new/mcsl2-preview.webp'
       },
       {
@@ -76,7 +76,7 @@ export default {
         image: 'https://images.mcsl.com.cn/new/bg.webp'
       },
       {
-        name: 'MCSL-Sync',
+        name: 'MCSL-Sync 核心镜像站',
         link: 'https://sync.mcsl.com.cn/',
         icon: 'https://images.mcsl.com.cn/new/MCSL-Sync.webp',
         description: '一个全面的 MC 服务器核心镜像站，提供超过 30 种服务器核心下载',
@@ -473,7 +473,7 @@ export default {
     top: auto;
     left: 50%;
     right: auto;
-    bottom: 60px;
+    bottom: 260px;
     transform: translateX(-50%);
     margin: 0;
   }

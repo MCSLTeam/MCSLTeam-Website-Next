@@ -10,7 +10,7 @@
                   关于我们
                 </n-gradient-text>
               </h1>
-              <p class="hero-subtitle">了解MCSL开发组的故事与使命</p>
+              <p class="hero-subtitle">识今昔之事，展未来蓝图</p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
               </p>
               
               <p class="intro-text">
-                专注于<strong>Minecraft 服务器工具开发</strong>，拥有多项计算机软件著作权，并成功推出多款高口碑产品。
+                专注于<strong> Minecraft 服务器工具开发</strong>，拥有多项计算机软件著作权，并成功推出多款高口碑产品。
               </p>
             </div>
           </n-card>

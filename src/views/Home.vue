@@ -12,12 +12,15 @@
             :draggable="true"
             effect="card"
           >
-            <div
+            <n-carousel-item
               v-for="(image, index) in backgroundImages"
               :key="index"
-              class="hero-slide"
-              :style="{ backgroundImage: `url(${image})` }"
-            ></div>
+            >
+              <div
+                class="hero-slide"
+                :style="{ backgroundImage: `url(${image})` }"
+              ></div>
+            </n-carousel-item>
           </n-carousel>
 
           <div class="hero-content">
@@ -39,17 +42,27 @@
             </div>
 
             <div class="hero-actions" :class="{ 'mobile-actions': isMobile }">
-              <n-button
-                type="info"
-                size="large"
-                @click="scrollToMembers"
-                class="hero-button"
-              >
-                <template #icon>
-                  <n-icon><PeopleIcon /></n-icon>
-                </template>
-                了解更多
-              </n-button>
+              <div class="button-group">
+                <n-button
+                  type="info"
+                  size="large"
+                  @click="scrollToMembers"
+                  class="hero-button hero-button-left"
+                >
+                  <template #icon>
+                    <n-icon><PeopleIcon /></n-icon>
+                  </template>
+                  了解更多
+                </n-button>
+                <n-button
+                  type="primary"
+                  size="large"
+                  @click="showContactModal = true"
+                  class="hero-button hero-button-right"
+                >
+                  <n-icon size="20"><MailIcon /></n-icon>
+                </n-button>
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +77,7 @@
                 </n-gradient-text>
               </h2>
               <p class="products-subtitle">
-                我们勇于创新，不断追求卓越，各种创意设计与新颖想法是我们执手的利刃。
+                勇于创新，追求卓越，各种创意设计与新颖想法是我们执手的利刃。
               </p>
             </div>
 
@@ -109,11 +122,73 @@
         <MemberView />
       </n-layout-content>
     </n-layout>
+
+    <!-- 联系我们模态框 -->
+    <n-modal v-model:show="showContactModal" preset="card" style="width: 600px; max-width: 90vw;" title="联系我们">
+      <n-space vertical :size="24">
+        <div class="contact-intro">
+          <n-text>
+            感谢您对 MCSL 开发组的关注！我们很高兴能与您建立联系。如果您有任何问题、建议或合作意向，请通过以下方式联系我们：
+          </n-text>
+        </div>
+        
+        <n-space vertical :size="16">
+          <n-card embedded>
+            <div class="contact-item">
+              <n-icon size="24" color="#19e3a2">
+                <MailIcon />
+              </n-icon>
+              <div class="contact-info">
+                <div class="contact-label">邮箱地址</div>
+                <div class="contact-value">
+                  <a href="mailto:services@mcsl.com.cn" class="contact-link">services@mcsl.com.cn</a>
+                </div>
+              </div>
+            </div>
+          </n-card>
+
+          <n-card embedded>
+            <div class="contact-item">
+              <n-icon size="24" color="#19e3a2">
+                <ChatIcon />
+              </n-icon>
+              <div class="contact-info">
+                <div class="contact-label">QQ 群聊</div>
+                <div class="contact-value">
+                  <a href="https://jq.qq.com/?_wv=1027&k=x2ISlviQ" target="_blank" class="contact-link">点击加入官方 QQ 群</a>
+                </div>
+              </div>
+            </div>
+          </n-card>
+
+          <n-card embedded>
+            <div class="contact-item">
+              <n-icon size="24" color="#19e3a2">
+                <GithubIcon />
+              </n-icon>
+              <div class="contact-info">
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">
+                  <a href="https://github.com/MCSLTeam" target="_blank" class="contact-link">MCSLTeam</a>
+                </div>
+              </div>
+            </div>
+          </n-card>
+        </n-space>
+
+        <div class="contact-footer">
+          <n-text depth="3" style="font-size: 14px;">
+            我们通常会在 24 小时内回复您的消息。期待与您的交流！
+          </n-text>
+        </div>
+      </n-space>
+    </n-modal>
   </div>
 </template>
 
 <script>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 import MemberView from '../components/MemberView.vue'
 import {
   NLayout,
@@ -121,12 +196,21 @@ import {
   NButton,
   NIcon,
   NGradientText,
-  NCarousel
+  NCarousel,
+  NCarouselItem,
+  NModal,
+  NCard,
+  NSpace,
+  NText
 } from 'naive-ui'
 import {
   People as PeopleIcon,
   ArrowForward as ArrowForwardIcon,
-  Apps as AppsIcon
+  Apps as AppsIcon,
+  Mail as MailIcon,
+  Call as CallIcon,
+  ChatbubbleEllipses as ChatIcon,
+  LogoGithub as GithubIcon
 } from '@vicons/ionicons5'
 
 export default {
@@ -138,14 +222,25 @@ export default {
     NIcon,
     NGradientText,
     NCarousel,
+    NCarouselItem,
+    NModal,
+    NCard,
+    NSpace,
+    NText,
     MemberView,
     PeopleIcon,
     ArrowForwardIcon,
-    AppsIcon
+    AppsIcon,
+    MailIcon,
+    CallIcon,
+    ChatIcon,
+    GithubIcon
   },
   setup() {
+    const router = useRouter()
     const isMobile = ref(false)
     const screenWidth = ref(window.innerWidth)
+    const showContactModal = ref(false)
 
     // 背景图片数组
     const backgroundImages = ref([
@@ -171,8 +266,8 @@ export default {
     const products = ref([
       {
         id: 1,
-        name: 'MCServerLauncher 2',
-        description: '简洁全能的 Minecraft 开服器',
+        name: 'MCServerLauncher 2 开服器',
+        description: '简洁全能的 Minecraft 开服工具',
         icon: 'https://images.mcsl.com.cn/new/MCSL2.webp',
         link: 'https://v2.mcsl.com.cn/'
       },
@@ -185,7 +280,7 @@ export default {
       },
       {
         id: 3,
-        name: 'MCSL-Sync',
+        name: 'MCSL-Sync 核心镜像站',
         description: '全面的服务器核心镜像站',
         icon: 'https://images.mcsl.com.cn/new/MCSL-Sync.webp',
         link: 'https://sync.mcsl.com.cn/'
@@ -261,7 +356,8 @@ export default {
       scrollToMembers,
       products,
       openProduct,
-      viewAllProducts
+      viewAllProducts,
+      showContactModal
     }
   }
 }
@@ -388,17 +484,49 @@ export default {
   margin-top: 0;
 }
 
+.button-group {
+  position: relative;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
 .hero-button {
   font-size: 16px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 0 !important;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none !important;
+  box-shadow: none !important;
+  position: relative;
+  z-index: 1;
+  min-width: 140px;
+}
+
+  .hero-button-left {
+    border-radius: 8px 0 0 0 !important;
+    background: linear-gradient(135deg,  #40a9ff 50%, #69c0ff 100%) !important;
+  }
+
+  .hero-button-right {
+    border-radius: 0 0 0 0 !important;
+    background: linear-gradient(135deg,  #3dd1a0 50%, #09b06d 100%) !important;
+    min-width: 60px !important;
+    width: 60px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .hero-button:hover {
+  transform: scale(1.02);
+}
+
+.button-group:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
@@ -552,8 +680,35 @@ export default {
     justify-content: flex-start;
   }
 
+  .button-group {
+    flex-direction: row;
+    width: 100%;
+    max-width: 280px;
+  }
+
   .hero-button {
     font-size: 15px;
+    min-width: auto;
+    width: auto;
+    flex: 1;
+  }
+
+  .hero-button-left {
+    border-radius: 8px 0 0 8px !important;
+    background: linear-gradient(135deg,  #40a9ff 50%, #69c0ff 100%) !important;
+  }
+
+  .hero-button-right {
+    border-radius: 0 8px 8px 0 !important;
+    background: linear-gradient(135deg,  #3dd1a0 50%, #09b06d 100%) !important;
+    width: 60px !important;
+    min-width: 60px !important;
+    flex: 0 0 60px !important;
+    height: auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
@@ -894,6 +1049,71 @@ export default {
 
   .product-desc {
     font-size: 0.9rem;
+  }
+}
+
+/* 联系我们模态框样式 */
+.contact-intro {
+  text-align: left;
+  line-height: 1.6;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.contact-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-label {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--n-text-color);
+}
+
+.contact-value {
+  font-size: 14px;
+  color: var(--n-text-color-2);
+}
+
+.contact-link {
+  color: #19e3a2;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  padding: 2px 4px;
+  margin: -2px -4px;
+}
+
+.contact-link:hover {
+  color: #16d195;
+  background-color: rgba(25, 227, 162, 0.1);
+}
+
+.contact-footer {
+  text-align: center;
+  padding-top: 8px;
+}
+
+/* 移动端联系模态框优化 */
+@media (max-width: 768px) {
+  .contact-item {
+    gap: 12px;
+  }
+  
+  .contact-label {
+    font-size: 15px;
+  }
+  
+  .contact-value {
+    font-size: 13px;
   }
 }
 </style>

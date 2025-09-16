@@ -9,7 +9,7 @@
             </n-gradient-text>
           </h2>
           <p class="section-subtitle">
-            志同道合的伙伴，携手共创美好未来
+            我们是一群志同道合的摘星者，为了改变这个世界而努力奋斗。
           </p>
         </div>
       </template>
@@ -261,6 +261,24 @@ export default {
         avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=2675575791&spec=4',
         role: '创新建设者',
         link: 'https://github.com/chenziqian0625'
+      },
+      {
+        name: 'zackzheng1121',
+        avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=1970335596&spec=4',
+        role: '国际化专员',
+        link: 'https://github.com/zackzheng1121'
+      },
+      {
+        name: 'Antarctic bear',
+        avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=785971038&spec=4',
+        role: '创新建设者',
+        link: '#'
+      },
+      {
+        name: 'qyf',
+        avatar: 'https://q2.qlogo.cn/headimg_dl?dst_uin=3561786358&spec=4',
+        role: '开发工程师',
+        link: 'https://github.com/QYF-RYCBStudio'
       }
     ])
 
