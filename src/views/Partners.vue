@@ -174,12 +174,12 @@ export default {
   },
   setup() {
     const strategicPartners = [
-      {
-        id: 1,
-        name: '阜阳市波比网络科技有限公司',
-        logo: 'https://img.fastmirror.net/s/2025/07/22/687f88c27f39b.jpg',
-        website: 'http://www.blbilink.com'
-      }
+      // {
+      //   id: 1,
+      //   name: '阜阳市波比网络科技有限公司',
+      //   logo: 'https://img.fastmirror.net/s/2025/07/22/687f88c27f39b.jpg',
+      //   website: 'http://www.blbilink.com'
+      // }
     ]
 
     const communityPartners = [
